@@ -174,3 +174,4 @@ cython_debug/
 # End of https://www.toptal.com/developers/gitignore/api/django
 alura-django.code-workspace
 venv-django
+.venv-django
