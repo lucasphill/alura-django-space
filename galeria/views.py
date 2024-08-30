@@ -5,7 +5,7 @@ from galeria.models import Fotografia
 
 
 def index(request):
-    fotograifa = Fotografia.objects.all()
+    fotograifa = Fotografia.objects.order_by('datetime_fotografia').filter(publicada=True)
     return render(request, 'galeria/index.html', {'cards':fotograifa})
 
 def imagem(request, foto_id):
