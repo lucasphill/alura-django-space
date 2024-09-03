@@ -2,9 +2,9 @@
 {% load static %}
 {% block content %}
     <div class="pagina-inicial">
-        {% include 'galeria/partials/_header.html' %}
+        {% include 'partials/_header.html' %}
         <main class="principal">
-            {% include 'galeria/partials/_nav.html' %}
+            {% include 'partials/_nav.html' %}
             <section class="conteudo">
                 <section class="imagem">
                     <div class="imagem__conteudo">
@@ -17,7 +17,7 @@
                             <div class="imagem__texto">
                                 <p class="imagem__titulo">{{ fotografia.nome }}</p>
                                 <p class="imagem__descricao">{{ fotografia.legenda }}</p>
-                                <p class="imagem__texto"></p>
+                                <p class="imagem__texto">{{ fotografia.descricao }}</p>
                             </div>
                         </div>
                     </div>
