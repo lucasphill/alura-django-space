@@ -26,13 +26,13 @@ class LoginForms(forms.Form):
 
 class CadastroForms(forms.Form):
     nome_cadastro=forms.CharField(
-        label='Nome completo',
+        label='Nome de usuário',
         required=True,
         max_length=70,
         widget=forms.TextInput(
             attrs={
                 'class':'form-control',
-                'placeholder': 'Digite seu nome completo'
+                'placeholder': 'Digite seu nome de usuário'
             }
         )
     )
@@ -77,7 +77,7 @@ class CadastroForms(forms.Form):
             else:
                 return nome
             
-    def clean_senha_cadastro_1(self):
+    def clean_senha_cadastro_2(self):
         senha_1 = self.cleaned_data.get('senha_cadastro_1')
         senha_2 = self.cleaned_data.get('senha_cadastro_2')
 
@@ -85,4 +85,4 @@ class CadastroForms(forms.Form):
             if senha_1 != senha_2:
                 raise forms.ValidationError('As senhas não são iguais')
             else:
-                return senha_1
+                return senha_2
