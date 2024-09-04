@@ -31,9 +31,9 @@ def buscar(request):
     if 'buscar' in request.GET:
         nome_a_buscar = request.GET['buscar']
         if nome_a_buscar:
-            fotografia = fotografia.filter(nome__icontains=nome_a_buscar)
+            fotografia = fotografia.filter(nome__icontains=nome_a_buscar, categoria__icontains=nome_a_buscar, descricao__icontains=nome_a_buscar)
 
-    return render(request, 'galeria/buscar.html', {'cards':fotografia})
+    return render(request, 'galeria/index.html', {'cards':fotografia})
 
 def nova_imagem(request):
     
@@ -82,3 +82,11 @@ def deletar_imagem(request, foto_id):
 
     messages.info(request, 'Fotografia excluida com sucesso!')
     return redirect('index')
+
+def filter(request, categoria):
+    if not request.user.is_authenticated:
+        messages.error(request, 'Necessário estar logado para visualizar essa pagina')
+        return redirect('login')
+    
+    fotograifa = Fotografia.objects.order_by('datetime_fotografia').filter(publicada=True, categoria=categoria)
+    return render(request, 'galeria/index.html', {'cards':fotograifa})
